@@ -1,0 +1,29 @@
+CONFIG_BOARD_TOUCHTYPE=y
+CONFIG_SOC_SERIES_NRF52X=y
+CONFIG_SOC_NRF52832_QFAA=y
+
+# enable GPIO
+CONFIG_GPIO=y
+
+# Enable i2c
+CONFIG_I2C=y
+
+# Enable MPU
+CONFIG_ARM_MPU=y
+
+CONFIG_ZMK_BLE=y
+
+# board板没有 DCDC 电感元件，则需要删除 Kconfig 文件并注释掉以下这行
+#CONFIG_BOARD_ENABLE_DCDC=y
+
+# 硬件设定为外围设备，键盘对于主机是外围设置，这是必选项
+CONFIG_BT_PERIPHERAL=y
+
+# 设备名称
+# CONFIG_BT_DEVICE_NAME="TouchType"
+
+
+
+
+
+
