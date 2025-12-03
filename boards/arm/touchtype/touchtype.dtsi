@@ -1,0 +1,19 @@
+/ {
+    macros {
+        zmk_n1: n1_name {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp Y &kp H &kp SPACE>;
+        };
+
+        zmk_n2: n2_name {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp SPACE>;
+        };
+    };
+};
