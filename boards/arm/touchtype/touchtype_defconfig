@@ -14,13 +14,19 @@ CONFIG_ARM_MPU=y
 CONFIG_ZMK_BLE=y
 
 # board板没有 DCDC 电感元件，则需要删除 Kconfig 文件并注释掉以下这行
-#CONFIG_BOARD_ENABLE_DCDC=y
+#CONFIG_BOARD_ENABLE_DCDC=n
 
 # 硬件设定为外围设备，键盘对于主机是外围设置，这是必选项
 CONFIG_BT_PERIPHERAL=y
 
 # 设备名称
-# CONFIG_BT_DEVICE_NAME="TouchType"
+CONFIG_BT_DEVICE_NAME="Touchnodc"
+
+# 使用内置晶振
+CONFIG_CLOCK_CONTROL_NRF_K32SRC_SYNTH=y
+CONFIG_CLOCK_CONTROL_NRF_K32SRC_XTAL=n
+
+
 
 
 

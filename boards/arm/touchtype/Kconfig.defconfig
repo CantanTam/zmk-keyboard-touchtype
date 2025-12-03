@@ -13,6 +13,6 @@ config ZMK_KEYBOARD_NAME
     default "touchModule"
 
 config ZMK_KSCAN_MATRIX_POLLING
-    default y
+    default yCONFIG_SOC_NRF52832_QFA=y
 
 endif # BOARD_TOUCHTYPE
