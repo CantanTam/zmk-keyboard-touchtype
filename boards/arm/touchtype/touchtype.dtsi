@@ -4,6 +4,24 @@
 
 
 / {
+    // 切换 默认模式、vim 编程模式、小说写作模式
+    mode {
+        default_layer: switch_to_default_mode { 
+            compatible = "zmk,key-override"; 
+            when-pressed = <&kp ESC>; 
+            override-keys = <&kp HOME>; 
+            substitute = <&to 0>; 
+        };
+
+        vim_layer: switch_to_vim_mode { 
+            compatible = "zmk,key-override"; 
+            when-pressed = <&kp ESC>; 
+            override-keys = <&kp PAGE_UP>; 
+            substitute = <&to 2>; 
+        };
+    };
+
+    // 快速输入中文符号
     macros {
         // 输入左双引号
         zmk_ldquote: left_double_quote {

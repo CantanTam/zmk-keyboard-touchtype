@@ -14,13 +14,14 @@
 #include <dt-bindings/zmk/bt.h>
 #include "touchtype.dtsi"
 
-#define FUNC_L 1
+#define FN_LAYER 1
 
 / {
 
     keymap {
         compatible = "zmk,keymap";
 
+        // 排在第一位的，就是 layer 0，跟名字没有任何关系，后面如此类推
         default_layer {
             bindings = <
     /*          // COL_1        // COL_2        // COL_3        // COL_4        // COL_5        // COL_6        // COL_7        // COL_8       // COL_9  
@@ -29,7 +30,7 @@
     /*ROW_2*/   &kp TAB         &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U          &kp I
     /*ROW_3*/   &kp CAPS        &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J          &kp K
     /*ROW_4*/   &kp LSHIFT      &kp Z           &kp X           &kp C           &kp V           &kp B           &kp N           &kp M          &kp COMMA
-    /*ROW_5*/   &kp LCTRL       &kp LMETA       &kp LALT        &kp SPACE       &kp ENTER       &kp BACKSPACE   &kp RALT        &mo FUNC_L     &kp K_APP
+    /*ROW_5*/   &kp LCTRL       &kp LMETA       &kp LALT        &kp SPACE       &kp ENTER       &kp BACKSPACE   &kp RALT        &tog 2         &kp K_APP
     /*ROW_6*/   &kp N9          &kp N0          &kp MINUS       &kp EQUAL       &kp HOME        &kp F1          &kp F6          &kp ESC        &kp F11
     /*ROW_7*/   &kp O           &kp P           &kp LBKT        &kp RBKT        &kp PAGE_UP     &kp F2          &kp F7          &kp BACKSPACE  &kp F12
     /*ROW_8*/   &kp L           &kp SEMICOLON   &kp APOSTROPHE  &kp BACKSLASH   &kp PAGE_DOWN   &kp F3          &kp F8          &kp INSERT     &none
@@ -38,6 +39,7 @@
             >;
         };
 
+        // layer 1 , fn 功能键层
         func_layer {
             bindings = <
     /*          // COL_1        // COL_2        // COL_3        // COL_4        // COL_5        // COL_6        // COL_7        // COL_8       // COL_9  
@@ -46,13 +48,33 @@
     /*ROW_2*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_3*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_4*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
-    /*ROW_5*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &mo FUNC_L     &trans
+    /*ROW_5*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &tog 2         &trans
     /*ROW_6*/   &trans          &trans          &trans          &trans          &trans          &kp C_MUTE      &trans          &trans         &trans
-    /*ROW_7*/   &trans          &transp C_VOL_DN    &trans          &trans         &trans
+    /*ROW_7*/   &trans          &trans          &trans          &trans          &trans          &kp C_VOL_DN    &trans          &trans         &trans
     /*ROW_8*/   &trans          &trans          &trans          &trans          &trans          &kp C_VOL_UP    &trans          &trans         &none
     /*ROW_9*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &none
     /*ROW_10*/  &trans          &trans          &trans          &trans          &trans          &trans          &trans          &none          &none
             >;
         };
+
+        // layer 2 , vim 编程模式功能键层
+        vim_coding_layer {
+            bindings = <
+    /*          // COL_1        // COL_2        // COL_3        // COL_4        // COL_5        // COL_6        // COL_7        // COL_8       // COL_9  
+                //——————————————//——————————————//——————————————//——————————————//——————————————//——————————————//——————————————//—————————————//————————————— */  
+    /*ROW_1*/   &kp SYSREQ      &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_2*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_3*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_4*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_5*/   &trans          &trans          &trans          &trans          &kp ESC         &kp ENTER       &trans          &tog 2         &trans
+    /*ROW_6*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_7*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_8*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &none
+    /*ROW_9*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &none
+    /*ROW_10*/  &trans          &trans          &trans          &trans          &trans          &trans          &trans          &none          &none
+            >;
+        };
+
+
     };
 };
