@@ -1,19 +1,140 @@
+// 自定义符号快捷输入
+
+#define DELAY_TIME <5> // 定义宏延迟时间为 10 毫秒
+
+
 / {
     macros {
-        zmk_n1: n1_name {
+        // 输入左双引号
+        zmk_ldquote: left_double_quote {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   // zero-parameter macro
-            wait-ms = <10>;
-            tap-ms = <10>;
-            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp Y &kp H &kp SPACE>;
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkzsyh → “ 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp S &kp Y &kp H &kp SPACE>;
         };
 
-        zmk_n2: n2_name {
+        // 输入右双引号
+        zmk_rdquote: right_double_quote {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   // zero-parameter macro
-            wait-ms = <10>;
-            tap-ms = <10>;
-            bindings = <&kp ESC &kp Z &kp M &kp K &kp SPACE>;
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → “ 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Y &kp S &kp Y &kp H &kp SPACE>;
         };
+
+        // 输入左单引号
+        zmk_lsquote: left_single_quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkzsyh → ‘ 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp D &kp Y &kp H &kp SPACE>;
+        };
+
+        // 输入右单引号
+        zmk_rsquote: right_single_quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → ’ 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Y &kp D &kp Y &kp H &kp SPACE>;
+        };
+
+        // 输入左双引号、右双引号、左方向键
+        zmk_dquote: both_double_quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → ：“” 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp S &kp Y &kp H &kp SPACE &kp LEFT>;
+        };
+
+        // 输入左单引号、右单引号、左方向键
+        zmk_squote: both_single_quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → ‘’ 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp D &kp Y &kp H &kp SPACE &kp LEFT>;
+        };
+
+
+
+
+        // 输入左双书名号
+        zmk_ldguill: left_double_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 《 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp S &kp S &kp M &kp H &kp SPACE>;
+        };
+
+        // 输入右双书名号
+        zmk_rdguill: right_double_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 》 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Y &kp S &kp S &kp M &kp H &kp SPACE>;
+        };
+
+        // 输入左、右双书名号
+        zmk_dguill: both_double_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 《》 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp S &kp S &kp M &kp H &kp SPACE &kp LEFT>;
+        };
+
+
+
+
+
+
+
+
+        // 输入左单书名号
+        zmk_lsguill: left_single_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 《 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Z &kp D &kp S &kp M &kp H &kp SPACE>;
+        };
+
+        // 输入右单书名号
+        zmk_rsguill: right_single_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 》 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp Y &kp D &kp S &kp M &kp H &kp SPACE>;
+        };
+
+        // 输入左、右双书名号
+        zmk_sguill: both_single_guillemet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            wait-ms = DELAY_TIME;
+            tap-ms = DELAY_TIME;
+            // 需要在输入法当中添加 zmkysyh → 《》 这样的定义才能使用，同时适用于 windows 和 linux 输入法
+            bindings = <&kp ESC &kp Z &kp M &kp K &kp D &kp S &kp M &kp H &kp SPACE &kp LEFT>;
+        };
+
+
     };
 };
