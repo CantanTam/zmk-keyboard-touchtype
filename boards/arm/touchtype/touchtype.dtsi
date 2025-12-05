@@ -1,7 +1,7 @@
 // 自定义符号快捷输入
 
 #define DELAY_TIME <5> // 定义宏延迟时间为 10 毫秒
-#define HOLD_TIME <1000> // 定义短按、长按时间阀值
+#define HOLD_TIME <500> // 定义短按、长按时间阀值
 
 
 / {
@@ -173,9 +173,39 @@
             bindings = <&kp LPAR &kp RPAR &kp LEFT>;
         };
 
+        // 用于 space 和 ← 的长按、短按组合键
+        zmk_space: tab_hold_space {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&kp SPACE>;
+        };
+
+        // 用于 space 和 ← 的长按、短按组合键
+        zmk_left: tab_hold_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&kp LEFT_ARROW>;
+        };
+
+        // 用于 enter 和 → 的长按、短按组合键
+        zmk_enter: tab_hold_enter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&kp ENTER>;
+        };
+
+        // 用于 enter 和 → 的长按、短按组合键
+        zmk_right: tab_hold_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&kp RIGHT_ARROW>;
+        };
+
+
+
 
         // 短按输出 “”，长按输出 ‘’
-        zmk_aquote: double_single_quote {
+        th_quote: double_single_quote {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = HOLD_TIME;      // 短按判定时间，可调
@@ -186,7 +216,7 @@
         };
 
         // 短按输出 《》，长按输出 〈〉
-        zmk_aguill: double_single_guill {
+        th_guill: double_single_guill {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = HOLD_TIME;      // 短按判定时间，可调
@@ -195,6 +225,28 @@
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
             bindings =<&zmk_sguill>, <&zmk_dguill> ;
         };
+
+        // 短按输出 space ，长按输出 ←
+        th_space: space_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = HOLD_TIME;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            quick-tap-ms = <200>;         // 快速连点也按 tap 处理（可选）
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_left>,<&zmk_space>;
+        };   
+
+         // 短按输出 enter ，长按输出 →
+        th_enter: enter_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = HOLD_TIME;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            quick-tap-ms = <200>;         // 快速连点也按 tap 处理（可选）
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_right>,<&zmk_enter>;
+        };      
 
 
     };

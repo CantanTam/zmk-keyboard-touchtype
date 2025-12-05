@@ -83,11 +83,11 @@
             bindings = <
     /*          // COL_1        // COL_2        // COL_3        // COL_4        // COL_5        // COL_6        // COL_7        // COL_8       // COL_9  
                 //——————————————//——————————————//——————————————//——————————————//——————————————//——————————————//——————————————//—————————————//————————————— */  
-    /*ROW_1*/   &zmk_aguill 0 0 &zmk_aquote 0 0 &trans          &trans          &trans          &trans          &trans          &trans         &trans
+    /*ROW_1*/   &th_guill 0 0   &th_quote 0 0   &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_2*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_3*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_4*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
-    /*ROW_5*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &mo FN_LAYER   &trans
+    /*ROW_5*/   &trans          &trans          &trans          &th_space 0 0   &th_enter 0 0   &trans          &trans          &mo FN_LAYER   &trans
     /*ROW_6*/   &trans          &trans          &trans          &trans          &trans          &kp N1          &kp N6          &trans         &none
     /*ROW_7*/   &trans          &trans          &trans          &trans          &trans          &kp N2          &kp N7          &trans         &none
     /*ROW_8*/   &trans          &trans          &trans          &trans          &trans          &kp N3          &kp N8          &trans         &none
