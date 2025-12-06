@@ -32,4 +32,18 @@ CONFIG_BT_DEVICE_NAME="Touchlvim"
 
 
 
+#### 电池检测测试 #######
+
+# 启用 ADC
+CONFIG_ADC=y
+
+# 启用电池服务 (BLE)
+CONFIG_BT_BAS=y
+CONFIG_ZMK_BATTERY_REPORTING=y
+
+# 设置电量报告间隔为 120 秒 (2 分钟)
+CONFIG_ZMK_BATTERY_REPORT_INTERVAL=120
+
+
+
 

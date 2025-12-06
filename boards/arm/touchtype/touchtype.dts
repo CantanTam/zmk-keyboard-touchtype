@@ -81,9 +81,11 @@
 
     vbatt: vbatt {
         compatible = "zmk,battery-voltage-divider";
-        io-channels = <&adc 2>;
-        output-ohms = <2000000>;
-        full-ohms = <(2000000 + 806000)>;
+        // 我使用的 P0.29 对应 AIN5 通道，所以这里是 &adc 5
+        io-channels = <&adc 5>;
+        output-ohms = <100000>;
+        full-ohms = <200000>;
+        status = "okay";
     };
 
     
