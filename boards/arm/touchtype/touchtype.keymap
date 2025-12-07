@@ -52,9 +52,9 @@
     /*ROW_3*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_4*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &trans
     /*ROW_5*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &mo FN_LAYER   &trans
-    /*ROW_6*/   &trans          &trans          &trans          &trans          &to DEF_LAYER   &kp C_MUTE      &trans          &trans         &trans
-    /*ROW_7*/   &trans          &trans          &trans          &trans          &to VIM_LAYER   &kp C_VOL_DN    &trans          &trans         &trans
-    /*ROW_8*/   &trans          &trans          &trans          &trans          &to WRT_LAYER   &kp C_VOL_UP    &trans          &trans         &none
+    /*ROW_6*/   &trans          &trans          &trans          &trans          &th_todef 0 0   &kp C_MUTE      &trans          &trans         &trans
+    /*ROW_7*/   &trans          &trans          &trans          &trans          &th_tovim 0 0   &kp C_VOL_DN    &trans          &trans         &trans
+    /*ROW_8*/   &trans          &trans          &trans          &trans          &th_towrt 0 0   &kp C_VOL_UP    &trans          &trans         &none
     /*ROW_9*/   &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans         &none
     /*ROW_10*/  &trans          &th_btone 0 0   &th_clear 0 0   &th_bttwo 0 0   &th_btthree 0 0 &trans          &trans          &none          &none
             >;

@@ -4,24 +4,59 @@
 #define HOLD_TIME <500> // 定义短按、长按时间阀值
 
 
-/ {
-    // 切换 默认模式、vim 编程模式、小说写作模式
-    mode {
-        default_layer: switch_to_default_mode { 
-            compatible = "zmk,key-override"; 
-            when-pressed = <&kp ESC>; 
-            override-keys = <&kp HOME>; 
-            substitute = <&to 0>; 
-        };
+/ { 
+    // 切换到某层的操作
+    switch_layer {
+        // 如果有自定义行为，就需要把 &none 更换成真实的 behavior，例如 <&to 0 &kp A>
+        zmk_todefault: to_default_layer {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&to 0 &none>;
+        }; 
 
-        vim_layer: switch_to_vim_mode { 
-            compatible = "zmk,key-override"; 
-            when-pressed = <&kp ESC>; 
-            override-keys = <&kp PAGE_UP>; 
-            substitute = <&to 2>; 
-        };
+         // 短按空按键 ，长按切换到默认 layer 0
+        th_todef: switch_to_default_layer {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_todefault>,<&none>;
+        }; 
+
+        zmk_tovim: to_vim_layer {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&to 2 &none>;
+        }; 
+
+         // 短按空按键 ，长按切换到 vim 编辑层 layer 1
+        th_tovim: switch_to_vim_layer {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_tovim>,<&none>;
+        }; 
+
+        zmk_towrt: to_write_layer {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&to 3 &none>;
+        }; 
+
+         // 短按空按键 ，长按切换到写作模式层 layer 2
+        th_towrt: switch_to_write_layer {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_towrt>,<&none>;
+        }; 
+
     };
-
     // 快速输入中文符号
     macros {
         // 输入左双引号
@@ -227,7 +262,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   // zero-parameter macro
             bindings = <&bt BT_SEL 2>;
-        };
+        };       
 
 
         // 短按输出 “”，长按输出 ‘’
@@ -313,6 +348,7 @@
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
             bindings = <&zmk_btthree>,<&none>;
         };       
+
 
 
 
