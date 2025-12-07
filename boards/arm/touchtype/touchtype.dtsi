@@ -5,9 +5,9 @@
 
 
 / { 
-    // 切换到某层的操作
+    // 切换到不同编辑模式层
     switch_layer {
-        // 如果有自定义行为，就需要把 &none 更换成真实的 behavior，例如 <&to 0 &kp A>
+        // 如果有自定义行为，就需要把 &none 更换成真实的 behavior，例如 <&to 0 &kp A>，下面其实类似
         zmk_todefault: to_default_layer {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   // zero-parameter macro
@@ -57,8 +57,80 @@
         }; 
 
     };
+
+    // 切换不同的连接主机
+    switch_device {
+        // 主机清除当前槽位的匹配信息之后，需要在 zmk 的相同槽位清除匹配信息，它不会影响其它槽位的匹配信息
+        // 如果有自定义行为，就需要把 &none 更换成真实的 behavior，下面其实类似
+        zmk_clear: clear_current_bluetooth {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&bt BT_CLR &none>;
+        };
+
+        // 切换到槽位 0 的蓝牙连接
+        zmk_btone: to_bluetooth_one_connect {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&bt BT_SEL 0 &none>;
+        };
+
+        // 切换到槽位 1 的蓝牙连接
+        zmk_bttwo: to_bluetooth_two_connect {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&bt BT_SEL 1 &none>;
+        };
+
+        //切换到槽位 2 的蓝牙连接 
+        zmk_btthree: to_bluetooth_three_connect {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;   // zero-parameter macro
+            bindings = <&bt BT_SEL 2 &none>;
+        };   
+         // 短按空按键 ，长按清除当前槽位的蓝牙连接匹配
+        th_clear: clear_bluetooth_bond {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_clear>,<&none>;
+        };   
+
+         // 短按空按键 ，长按切换到蓝牙连接槽位 0
+        th_btone: to_bluetooth_bond_one {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_btone>,<&none>;
+        };  
+
+         // 短按空按键 ，长按切换到蓝牙连接槽位 1
+        th_bttwo: to_bluetooth_bond_two {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_bttwo>,<&none>;
+        };       
+
+         // 短按空按键 ，长按切换到蓝牙连接槽位 0
+        th_btthree: to_bluetooth_bond_three {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;      // 短按判定时间，可调
+            flavor = "balanced";          // 推荐 balanced，更自然
+            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
+            bindings = <&zmk_btthree>,<&none>;
+        };    
+    };
+
     // 快速输入中文符号
-    macros {
+    quick_chinese {
         // 输入左双引号
         zmk_ldquote: left_double_quote {
             compatible = "zmk,behavior-macro";
@@ -236,33 +308,7 @@
             bindings = <&kp RIGHT_ARROW>;
         };
 
-        // 主机清除当前槽位的匹配信息之后，需要在 zmk 的相同槽位清除匹配信息，它不会影响其它槽位的匹配信息
-        zmk_clear: clear_current_bluetooth {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   // zero-parameter macro
-            bindings = <&bt BT_CLR>;
-        };
-
-        // 切换到槽位 0 的蓝牙连接
-        zmk_btone: to_bluetooth_one_connect {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   // zero-parameter macro
-            bindings = <&bt BT_SEL 0>;
-        };
-
-        // 切换到槽位 1 的蓝牙连接
-        zmk_bttwo: to_bluetooth_two_connect {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   // zero-parameter macro
-            bindings = <&bt BT_SEL 1>;
-        };
-
-        //切换到槽位 2 的蓝牙连接 
-        zmk_btthree: to_bluetooth_three_connect {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   // zero-parameter macro
-            bindings = <&bt BT_SEL 2>;
-        };       
+    
 
 
         // 短按输出 “”，长按输出 ‘’
@@ -309,45 +355,7 @@
             bindings = <&zmk_right>,<&zmk_enter>;
         };
 
-         // 短按空按键 ，长按清除当前槽位的蓝牙连接匹配
-        th_clear: clear_bluetooth_bond {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;      // 短按判定时间，可调
-            flavor = "balanced";          // 推荐 balanced，更自然
-            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&zmk_clear>,<&none>;
-        };   
-
-         // 短按空按键 ，长按切换到蓝牙连接槽位 0
-        th_btone: to_bluetooth_bond_one {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;      // 短按判定时间，可调
-            flavor = "balanced";          // 推荐 balanced，更自然
-            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&zmk_btone>,<&none>;
-        };  
-
-         // 短按空按键 ，长按切换到蓝牙连接槽位 1
-        th_bttwo: to_bluetooth_bond_two {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;      // 短按判定时间，可调
-            flavor = "balanced";          // 推荐 balanced，更自然
-            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&zmk_bttwo>,<&none>;
-        };       
-
-         // 短按空按键 ，长按切换到蓝牙连接槽位 0
-        th_btthree: to_bluetooth_bond_three {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;      // 短按判定时间，可调
-            flavor = "balanced";          // 推荐 balanced，更自然
-            // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&zmk_btthree>,<&none>;
-        };       
+   
 
 
 
