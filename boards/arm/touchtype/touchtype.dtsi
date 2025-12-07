@@ -355,9 +355,6 @@
             bindings = <&zmk_right>,<&zmk_enter>;
         };
 
-   
-
-
 
 
     };
