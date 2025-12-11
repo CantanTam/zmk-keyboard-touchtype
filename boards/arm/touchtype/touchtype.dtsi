@@ -62,31 +62,32 @@
     switch_device {
         // 主机清除当前槽位的匹配信息之后，需要在 zmk 的相同槽位清除匹配信息，它不会影响其它槽位的匹配信息
         // 如果有自定义行为，就需要把 &none 更换成真实的 behavior，下面其实类似
-        write_clear: clear_current_bluetooth {
+        device_clear: clear_current_bluetooth {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   
             bindings = <&bt BT_CLR &none>;
         };
 
         // 切换到槽位 0 的蓝牙连接
-        write_btone: to_bluetooth_one_connect {
+        device_one: to_bluetooth_one_connect {
             compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&bt BT_SEL 0 &none>;
+            #binding-cells = <0>;
+            // 这里先断开所有蓝牙连接，再选择相应的蓝牙槽，下面操作一样   
+            bindings = <&bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_SEL 0 &none>;
         };
 
         // 切换到槽位 1 的蓝牙连接
-        write_bttwo: to_bluetooth_two_connect {
+        device_two: to_bluetooth_two_connect {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   
-            bindings = <&bt BT_SEL 1 &none>;
+            bindings = <&bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_SEL 1 &none>;
         };
 
         //切换到槽位 2 的蓝牙连接 
-        write_btthree: to_bluetooth_three_connect {
+        device_three: to_bluetooth_three_connect {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;   
-            bindings = <&bt BT_SEL 2 &none>;
+            bindings = <&bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_SEL 2 &none>;
         };   
          // 短按空按键 ，长按清除当前槽位的蓝牙连接匹配
         th_clear: clear_bluetooth_bond {
@@ -95,7 +96,7 @@
             tapping-term-ms = HOLD_TIME;      // 短按判定时间，可调
             flavor = "balanced";          // 推荐 balanced，更自然
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&write_clear>,<&none>;
+            bindings = <&device_clear>,<&none>;
         };   
 
          // 短按空按键 ，长按切换到蓝牙连接槽位 0
@@ -105,7 +106,7 @@
             tapping-term-ms = <3000>;      // 短按判定时间，可调
             flavor = "balanced";          // 推荐 balanced，更自然
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&write_btone>,<&none>;
+            bindings = <&device_one>,<&none>;
         };  
 
          // 短按空按键 ，长按切换到蓝牙连接槽位 1
@@ -115,7 +116,7 @@
             tapping-term-ms = <3000>;      // 短按判定时间，可调
             flavor = "balanced";          // 推荐 balanced，更自然
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&write_bttwo>,<&none>;
+            bindings = <&device_two>,<&none>;
         };       
 
          // 短按空按键 ，长按切换到蓝牙连接槽位 0
@@ -125,7 +126,7 @@
             tapping-term-ms = <3000>;      // 短按判定时间，可调
             flavor = "balanced";          // 推荐 balanced，更自然
             // 长按在前，短按在后；同时适用于 windows 和 linux 输入法
-            bindings = <&write_btthree>,<&none>;
+            bindings = <&device_three>,<&none>;
         };    
     };
 
@@ -502,76 +503,6 @@
 
     // 标准 104 键英文默认字符列表，这里主要应用于自定义 coding layer 快速编程层
     english_symbol {
-        // 输出 1
-        code_n1: code_n1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N1>;
-        };
-
-        // 输出 2
-        code_n2: code_n2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N2>;
-        };
-
-        // 输出 3
-        code_n3: code_n3 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N3>;
-        };
-
-        // 输出 4
-        code_n4: code_n4 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N4>;
-        };
-
-        // 输出 5
-        code_n5: code_n5 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N5>;
-        };
-
-        // 输出 6
-        code_n6: code_n6 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N6>;
-        };
-
-        // 输出 7
-        code_n7: code_n7 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N7>;
-        };
-
-        // 输出 8
-        code_n8: code_n8 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N8>;
-        };
-
-        // 输出 9
-        code_n9: code_n9 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N9>;
-        };
-
-        // 输出 0
-        code_n0: code_n0 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;   
-            bindings = <&kp N0>;
-        };
-
         // Q 位置快捷键：长按 $ 短按 Q
         // 输出 $
         code_dollar: code_dollar {
