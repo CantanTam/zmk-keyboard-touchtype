@@ -75,7 +75,7 @@ CONFIG_ZMK_SLEEP=y
 # 进入深度睡眠模式的等待时间阀值，这里是 15分钟。注意，睡眠模式唤醒之后，会回到默认 layer 0，
 # 如果你不需要经常切换 layer ，可以直接使用默认值 900000，也就是 15 分钟；
 # 如果经常需要切换 layer ，可以把值调大一点，例如 3600000 ，也就是一小时，唤醒之后再切换 layer
-CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000
+CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=60000
 
 
 
